@@ -1,6 +1,6 @@
 powershell.exe -command "& {'C:\Users\nikolay\github files\files\Foreach-ObjectFast.ps1'}"
 
-# Where-Object is just...
+# Where-Object is just....
 $r1 = Get-Service | Where-Object { $_.Status -eq 'Running' }
 
 # a special case of Foreach-Object
