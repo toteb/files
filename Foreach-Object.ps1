@@ -1,4 +1,4 @@
-# Test script #
+# Test script - LIKE UDP#
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
 # search for all log files changed in the last 12 hours
