@@ -10,11 +10,11 @@ About:			Script facilitates McAfee to Crowdstrike Falcon migration and checks if
 $crdservice = Get-Service -Name "CSFalconService" -ErrorAction SilentlyContinue;	# Checks if ITS Platform is installed. Do not edit.
 $itsservice = Get-Service -Name "ITSPlatform" -ErrorAction SilentlyContinue;		# Checks if ITS Platform is installed. Do not edit.
 $mfetp = Get-Process -Name "mfetp" -ErrorAction SilentlyContinue;					# Checks if McAfee TP is installed. Do not edit.
-$download = "https://www.dropbox.com/s/ygnf3kvv77hd5wr/McAfeeRemoval.exe?dl=1", "https://www.dropbox.com/s/04z6rfn8bkno1x2/WindowsSensor.MaverickGyr.exe?dl=1", "https://www.dropbox.com/s/1ls9sp1stg4h6m6/BankerLopez_MSMA_ITSPlatform_TKNd9baff79-b548-426a-ab53-cdaa84c9a3de.msi?dl=1"; # DO NOT EDIT
+$download = "https://www.dropbox.com/s/ygnf3kvv77hd5wr/McAfeeRemoval.exe?dl=1", "https://www.dropbox.com/s/04z6rfn8bkno1x2/WindowsSensor.MaverickGyr.exe?dl=1", "https://www.dropbox.com/s/1ls9sp1stg4h6m6/BankerLopez_MSMA_ITSPlatform.msi?dl=1"; # DO NOT EDIT
 $dPath = "C:\tmp";
 $blspace = "######################################";
 $current = Get-Location;
-$items = "$dPath\McAfeeRemoval.exe", "$dPath\WindowsSensor.MaverickGyr.exe", "$dPath\BankerLopez_MSMA_ITSPlatform_TKNd9baff79-b548-426a-ab53-cdaa84c9a3de.msi"; # DO NOT EDIT
+$items = "$dPath\McAfeeRemoval.exe", "$dPath\WindowsSensor.MaverickGyr.exe", "$dPath\BankerLopez_MSMA_ITSPlatform.msi"; # DO NOT EDIT
 ### END SETUP ###
 
 ### Run removal tool without restarting the box if McAfee Threat Prevention is installed. ###
@@ -39,7 +39,7 @@ Write-Output "Downloading McAfee Removal Tool.";
 Do {
     $remSize = (Get-Item $items[0] -ErrorAction SilentlyContinue).Length;
     Start-Sleep -Seconds 3
-    } while ($remSize -lt 63653784)
+    } while ($remSize -lt 59653784)
 
 Write-Output "Download of McAfee Removal tool suceeded"; Start-Sleep 1;
 Write-Output "Removing McAfee Endpoint Security...";
@@ -57,9 +57,9 @@ if ($null -eq $crdservice) {
     (New-Object System.Net.WebClient).DownloadFile($download[1],$items[1]);
     Do { $remSize = (Get-Item $dPath\WindowsSensor.MaverickGyr.exe -ErrorAction SilentlyContinue).Length;
         Start-Sleep -Seconds 3
-    } while ($remSize -lt 52159343)
+    } while ($remSize -lt 49159343)
 
-    Write-Output "Download of Crowdstrike Falcon Agent suceeded"; Start-Sleep 1;
+    Write-Output "Download of Crowdstrike Falcon Agent suceeded"; Start-Sleep -Seconds 5;
     Write-Output "Installing...";
     Start-Process -FilePath $items[1] -NoNewWindow -ArgumentList "/install /quiet /norestart CID=59871111E1B94534B4868C3C8CF4F8D5-9C";
     Do { $crdservice = Get-Service -Name "CSFalconService" -ErrorAction SilentlyContinue;
@@ -76,9 +76,9 @@ if ($null -eq $crdservice) {
     (New-Object System.Net.WebClient).DownloadFile($download[2],$items[2]);
     Do { $remSize = (Get-Item $items[2] -ErrorAction SilentlyContinue).Length;
         Start-Sleep -Seconds 10
-    } while ($remSize -lt 285048832)
+    } while ($remSize -lt 172048832)
 
-    Write-Output "Download of ITS Platform Agent suceeded"; Start-Sleep 1;
+    Write-Output "Download of ITS Platform Agent suceeded"; Start-Sleep -Seconds 5;
     Write-Output "Installing...";
     Start-Process -FilePath $items[2] -NoNewWindow -ArgumentList "/q";
     Do { $itsplatform = Get-Service -name "ITSPlatform" -ErrorAction SilentlyContinue;
