@@ -1,0 +1,27 @@
+title: BlackCat Ransomware Execution And Recon UUID
+description: This rule detects BlackCat Ransomware execution and recon activities with the help of process_creation logs
+author: Emir Erdogan
+status: stable
+reference:
+- https://www.sentinelone.com/labs/blackcat-ransomware-highly-configurable-rust-driven-raas-on-the-prowl-for-victims/
+tags:
+- attack.T1059
+- attack.T1202
+- attack.T1007
+logsource:
+  product: windows
+  service: process_creation
+detection:
+  selection:
+    Image|endswith:
+    - \wmic.exe
+    CommandLine|contains|all:
+    - csproduct
+    - get
+  selection1:
+    Image|endswith:
+    - \worldwideStrata.exe
+  condition: selection or selection1
+falsepositives:
+- Get CsProduct UUID information would be system administration behaviour.
+level: high

@@ -1,0 +1,28 @@
+title
+id [optional]
+related [optional]
+   - type {type-identifier}
+     id {rule-id}
+status [optional]
+description [optional]
+author [optional]
+references [optional]
+logsource
+   category [optional]
+   product [optional]
+   service [optional]
+   definition [optional]
+   ...
+detection
+   {search-identifier} [optional]
+      {string-list} [optional]
+      {field: value} [optional]
+   ...
+   timeframe [optional]
+   condition
+fields [optional]
+falsepositives [optional]
+level [optional]
+tags [optional]
+...
+[arbitrary custom fields]
