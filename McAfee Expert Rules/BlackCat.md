@@ -9,7 +9,7 @@ Rule {
     }
     Target {
         Match PROCESS {
-        Include -access "CREATE" ; # Prevents section creation
+        Include -access "CREATE"
         Exclude OBJECT_NAME { -v "msasn1.dll" }
 	    Exclude OBJECT_NAME { -v "dbghelp.dll" }
 	    Exclude VTP_PRIVILEGES 0x8
