@@ -2,6 +2,7 @@ https://github.com/SigmaHQ/sigma/wiki/Specification#value-modifiers
 
 
 ### Currently Available Modifiers
+###
 ### Transformations
 
 # puts * wildcards around the values, such that the value is matched anywhere in the field.

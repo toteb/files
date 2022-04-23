@@ -1,5 +1,5 @@
 title: BlackCat Ransomware Execution And Recon UUID
-description: This rule detects BlackCat Ransomware execution and recon activities with the help of process_creation logs
+description: This rule detects BlackCat Ransomware execution and recon activities with the help of process_creation logs.
 author: Emir Erdogan
 status: stable
 reference:
