@@ -4,6 +4,9 @@
 ### Author: mcn1k
 #### Source: https://www.ic3.gov/Media/News/2022/220420.pdf , https://www.sentinelone.com/labs/blackcat-ransomware-highly-configurable-rust-driven-raas-on-the-prowl-for-victims/
 
+# Severity: Medium
+# Rule type: Processes
+
 Rule {
     Process {
         Include OBJECT_NAME { -v "cmd.exe" }
